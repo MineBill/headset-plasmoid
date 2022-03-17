@@ -1,6 +1,6 @@
 import QtQuick 2.4
 import QtQuick.Layouts 1.0
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.components 3.0 as PlasmaComponents
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 
@@ -11,37 +11,31 @@ Item {
     property string batteryPercent
     
     //Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
-    Plasmoid.fullRepresentation:ColumnLayout {
+    Plasmoid.fullRepresentation: ColumnLayout {
         anchors.centerIn: parent
         anchors.fill: parent
         spacing: 0
-        Layout.minimumWidth: units.gridUnit * 20
-        Layout.minimumHeight: units.gridUnit * 15
-        Rectangle {
-            color: "transparent"
-            height:5
-            Layout.fillWidth: true
-            Header{
-                id: label
-                text: i18n("Headset Configuration")
-            }
-        }
+        Layout.minimumWidth: units.gridUnit * 10
+        Layout.maximumWidth: units.gridUnit * 10
+        Layout.minimumHeight: units.gridUnit * 13   
+        Layout.maximumHeight: units.gridUnit * 13
         
         Rectangle {
             color: "transparent"
-            height: units.gridUnit * .5
+            height: units.gridUnit * .1
             Layout.fillWidth: true
             PlasmaComponents.Label {
-                height:1
+                height: 1
                 id: sidetone_valuetest
-                text: i18n("Device: " + deviceName)
+                text: i18n(deviceName)
+                font.pointSize: 13
                 anchors.centerIn: parent
             }
         }
         
         Rectangle {
             color: "transparent"
-            height: units.gridUnit * .5
+            height: units.gridUnit * .2
             Layout.fillWidth: true
             PlasmaComponents.Label {
                 height: 1
@@ -55,9 +49,10 @@ Item {
             color: "transparent"
             height: units.gridUnit * .5
             Layout.fillWidth: true
-            Header{
+            PlasmaComponents.Label {
                 id: label_sidetone
                 text: i18n("Set Sidetone")
+                horizontalAlignment: Text.AlignCenter
             }
         }
         
@@ -65,16 +60,17 @@ Item {
             color: "transparent"
             height: units.gridUnit * .1
             Layout.fillWidth: true
-            Layout.topMargin: 5
             
             PlasmaComponents.Slider {
                 id: toneSlider
-                width: 280
+                width: 150
                 anchors.centerIn: parent
                 orientation: Qt.Horizontal
-                minimumValue: 0
-                maximumValue: 128
-                stepSize: 2
+                from: 0
+                to: 128
+                value: 0
+                stepSize: 5
+
                 onPressedChanged: {
                     cmd.exec("headsetcontrol -s" + toneSlider.value)
                 }
@@ -85,7 +81,7 @@ Item {
             color: "transparent"
             height: units.gridUnit * .1
             Layout.fillWidth: true
-            Layout.bottomMargin: 5
+            Layout.bottomMargin: 2
             PlasmaComponents.Label {
                 id: sidetone_value
                 height: 1
