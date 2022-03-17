@@ -6,7 +6,7 @@ Icon=audio-headset
 Type=Service
 
 X-KDE-ParentApp=
-X-KDE-PluginInfo-Author=Alessandro Toia
+X-KDE-PluginInfo-Author=Alessandro Toia & MineBill
 X-KDE-PluginInfo-Email=gort818@gmail.com
 X-KDE-PluginInfo-License=GPL
 X-KDE-PluginInfo-Name=headsetcontrol
